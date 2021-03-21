@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Grade</title>
+    <link rel="stylesheet" href="assignment-03.css">
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="assingment-03.js"></script>
+</head>
+<body>
+<div id="main">
+    <table id="table" border="1" cellspacing="0">
+        <thead></thead>
+        <tbody></tbody>
+    </table>
+    <div id="panel">
+        <button type="button" onclick="openInsertWindow('last')">Add Row</button>
+        <button type="button" onclick="openCourseManager()">Manage Course</button>
+        <button type="button" onclick="loadTable()">Test</button>
+        <button type="button" onclick="undo()">Undo</button>
+        <p></p>
+    </div>
+</div>
+<div id="cover"></div>
+<div id="insertWindow" onkeydown="activeEnter(event)">
+    <table>
+        <tr>
+            <td><label for="name">Student Name:&nbsp</label></td>
+            <td><input id="name" type="text" onblur="validateInput(event)"></td>
+        </tr>
+        <tr>
+            <td><label for="id">Student ID:&nbsp</label></td>
+            <td><input id="id" type="text" onkeydown="validateInput(event)" oninput="validateInput(event)"
+                       maxlength="8" onblur="validateInput(event)"></td>
+        </tr>
+    </table>
+    <button type="button" onclick="addRow()">Confirm</button>
+    <button type="button" onclick="hideInsertWindow()">Cancel</button>
+</div>
+<div id="courseManager">
+    <form onsubmit="return false">
+        <div></div>
+        <button type="button" onclick="addCourse()" style="margin: 5px;float: left">Add</button>
+        <button type="button" onclick="hideCourseManager()" style="margin: 5px;float: right">Cancel</button>
+        <button type="submit" onclick="saveCourse()" style="margin: 5px;float: right">Save</button>
+    </form>
+</div>
+<div id="menu">
+    <div onclick="openInsertWindow('before')">Insert Before</div>
+    <div onclick="openInsertWindow('after')">Insert After</div>
+    <div onclick="deleteRow()">Delete</div>
+    <div onclick="hideMenu()">Cancel</div>
+</div>
+</body>
+</html>

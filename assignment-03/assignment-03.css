@@ -1,0 +1,170 @@
+body {
+    font-family: "sans-serif";
+}
+
+#main {
+    margin: 0 5vw;
+    align-items: center;
+}
+
+#table {
+    text-align: left;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#table th {
+    background-color: #a5a5a5;
+    color: black;
+    text-align: center;
+}
+
+.darkRow {
+    background-color: #e0e0e0;
+}
+
+.lightRow {
+    background-color: #f0f0f0;
+}
+
+#table tbody td:not(.leftAlign) {
+    text-align: right;
+}
+
+.un-submitted {
+    text-align: center !important;
+    background-color: yellow;
+}
+
+.failed {
+    background-color: red;
+    color: white;
+}
+
+#panel {
+    margin-top: 1vh;
+    font-weight: bold;
+    font-size: 1rem;
+    /*background-color: blue;*/
+}
+
+#panel p {
+    float: right;
+    margin: 0;
+}
+
+#cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    display: none;
+}
+
+#insertWindow {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 350px;
+    height: 150px;
+    background-color: rgb(238, 238, 238);
+    box-shadow: inset 0px 0px 0px 1px #454545;
+    border: 1px solid #3a3a3a;
+    display: none;
+}
+
+#insertWindow button {
+    position: relative;
+    left: 55%;
+    margin: 0 1%;
+}
+
+#insertWindow table {
+    margin: 2% auto;
+    border-spacing: 0 15px;
+    font-weight: bold;
+}
+
+#insertWindow input {
+    vertical-align: top;
+}
+
+#id {
+    ime-mode: disabled;
+}
+
+.nullTextTip {
+    border-color: red;
+}
+
+#courseManager {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 400px;
+    background-color: rgb(238, 238, 238);
+    box-shadow: inset 0px 0px 0px 1px #454545;
+    margin: 0;
+    display: none;
+}
+
+.list {
+    background-color: rgba(167, 167, 167, 0.37);
+    height: 35px;
+    margin: 4px 5px 0 5px;
+    border-radius: 3%;
+}
+
+.list input {
+    height: 35px;
+    width: 55%;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0;
+    border: none;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+
+.list button {
+    margin-top: 10px;
+    margin-right: 5px;
+    float: right;
+}
+
+.highlightRow {
+    box-shadow: inset 0px 0px 3px 3px cyan;
+    border-top-color: cyan;
+    border-bottom-color: cyan;
+}
+
+.highlightColumn {
+    box-shadow: inset -3px -1px 0px 0px cyan, inset 3px 1px 0px 0px cyan;
+}
+
+#menu {
+    position: fixed;
+    background-color: black;
+    width: 110px;
+    border-bottom: 1px solid black;
+    border-radius: 3%;
+    display: none;
+}
+
+#menu div {
+    height: 30px;
+    line-height: 30px;
+    background-color: rgb(240, 240, 240);
+    box-sizing: border-box;
+    margin: 1px 1px 0 1px;
+    border-radius: 4%;
+    padding-left: 3px;
+}
+
+#menu div:hover {
+    background-color: rgb(0, 234, 240);
+}

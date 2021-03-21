@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Pyramid</title>
+    <style>
+        #pyramid {
+            margin: auto;
+            height: 80vmin;
+            width: 100vmin;
+            background-color: gray;
+        }
+
+        #leftCover {
+            position: absolute;
+            width: 0;
+            border-top: 80vmin solid black;
+            border-right: 50vmin solid transparent;
+        }
+
+        #rightCover {
+            position: absolute;
+            left: 50%;
+            width: 0;
+            border-top: 80vmin solid black;
+            border-left: 50vmin solid transparent;
+        }
+
+        #shelf1 {
+            background-color: red;
+        }
+
+        #shelf2 {
+            background-color: orange;
+        }
+
+        #shelf3 {
+            background-color: yellow;
+        }
+
+        #shelf4 {
+            background-color: deepskyblue;
+        }
+
+        #shelf5 {
+            background-color: saddlebrown;
+        }
+
+        #shelf6 {
+            background-color: green;
+        }
+
+        .btnContainer {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .circleBtn {
+            width: 3.5vmin;
+            height: 3.5vmin;
+            border-radius: 50%;
+            outline: none;
+            border: 0.1vmin solid darkslategray;
+        }
+
+    </style>
+    <script>
+        var s1, s2, s3, s4, s5, s6;//shelf div
+        var q1, q2, q3, q4, q5, q6;//shelf button which shows quantity
+        window.onload = function () {
+            s1 = document.getElementById("shelf1");
+            s2 = document.getElementById("shelf2");
+            s3 = document.getElementById("shelf3");
+            s4 = document.getElementById("shelf4");
+            s5 = document.getElementById("shelf5");
+            s6 = document.getElementById("shelf6");
+            q1 = document.getElementById("q1");
+            q2 = document.getElementById("q2");
+            q3 = document.getElementById("q3");
+            q4 = document.getElementById("q4");
+            q5 = document.getElementById("q5");
+            q6 = document.getElementById("q6");
+            reloadPyramid();
+        }
+
+        function ff(shelf, sign) {
+            if (shelf === 1) {
+                if (sign === '-') {
+                    if (q1.innerHTML > 0) {
+                        q1.innerHTML = --q1.innerHTML;
+                    } else {
+                        q1.innerHTML = 0;
+                    }
+                } else if (sign === '+') {
+                    q1.innerHTML = ++q1.innerHTML;
+                }
+            } else if (shelf === 2) {
+                if (sign === '-') {
+                    if (q2.innerHTML > 0) {
+                        q2.innerHTML = --q2.innerHTML;
+                    } else {
+                        q2.innerHTML = 0;
+                    }
+                } else if (sign === '+') {
+                    q2.innerHTML = ++q2.innerHTML;
+                }
+            } else if (shelf === 3) {
+                if (sign === '-') {
+                    if (q3.innerHTML > 0) {
+                        q3.innerHTML = --q3.innerHTML;
+                    } else {
+                        q3.innerHTML = 0;
+                    }
+                } else if (sign === '+') {
+                    q3.innerHTML = ++q3.innerHTML;
+                }
+            } else if (shelf === 4) {
+                if (sign === '-') {
+                    if (q4.innerHTML > 0) {
+                        q4.innerHTML = --q4.innerHTML;
+                    } else {
+                        q4.innerHTML = 0;
+                    }
+                } else if (sign === '+') {
+                    q4.innerHTML = ++q4.innerHTML;
+                }
+            } else if (shelf === 5) {
+                if (sign === '-') {
+                    if (q5.innerHTML > 0) {
+                        q5.innerHTML = --q5.innerHTML;
+                    } else {
+                        q5.innerHTML = 0;
+                    }
+                } else if (sign === '+') {
+                    q5.innerHTML = ++q5.innerHTML;
+                }
+            } else if (shelf === 6) {
+                if (sign === '-') {
+                    if (q6.innerHTML > 0) {
+                        q6.innerHTML = --q6.innerHTML;
+                    } else {
+                        q6.innerHTML = 0;
+                    }
+                } else if (sign === '+') {
+                    q6.innerHTML = ++q6.innerHTML;
+                }
+            }
+            reloadPyramid();
+        }
+
+        function reloadPyramid() {
+            var totalQuantity = parseInt(q1.innerHTML) + parseInt(q2.innerHTML) + parseInt(q3.innerHTML) + parseInt(q4.innerHTML) + parseInt(q5.innerHTML) + parseInt(q6.innerHTML);
+            s1.style.height = 100.0 / totalQuantity * q1.innerHTML + "%";
+            s2.style.height = 100.0 / totalQuantity * q2.innerHTML + "%";
+            s3.style.height = 100.0 / totalQuantity * q3.innerHTML + "%";
+            s4.style.height = 100.0 / totalQuantity * q4.innerHTML + "%";
+            s5.style.height = 100.0 / totalQuantity * q5.innerHTML + "%";
+            s6.style.height = 100.0 / totalQuantity * q6.innerHTML + "%";
+        }
+    </script>
+</head>
+<body>
+<div id="pyramid">
+    <div id="leftCover"></div>
+    <div id="rightCover"></div>
+    <div id="shelf1">
+        <div class="btnContainer" style="top:80%">
+            <button class="circleBtn" onclick="ff(1,'-')">-</button>
+            <button id="q1" class="circleBtn">2</button>
+            <button class="circleBtn" onclick="ff(1,'+')">+</button>
+        </div>
+    </div>
+    <div id="shelf2">
+        <div class="btnContainer">
+            <button class="circleBtn" onclick="ff(2,'-')">-</button>
+            <button id="q2" class="circleBtn">2</button>
+            <button class="circleBtn" onclick="ff(2,'+')">+</button>
+        </div>
+    </div>
+    <div id="shelf3">
+        <div class="btnContainer">
+            <button class="circleBtn" onclick="ff(3,'-')">-</button>
+            <button id="q3" class="circleBtn">2</button>
+            <button class="circleBtn" onclick="ff(3,'+')">+</button>
+        </div>
+    </div>
+    <div id="shelf4">
+        <div class="btnContainer">
+            <button class="circleBtn" onclick="ff(4,'-')">-</button>
+            <button id="q4" class="circleBtn">2</button>
+            <button class="circleBtn" onclick="ff(4,'+')">+</button>
+        </div>
+    </div>
+    <div id="shelf5">
+        <div class="btnContainer">
+            <button class="circleBtn" onclick="ff(5,'-')">-</button>
+            <button id="q5" class="circleBtn">2</button>
+            <button class="circleBtn" onclick="ff(5,'+')">+</button>
+        </div>
+    </div>
+    <div id="shelf6">
+        <div class="btnContainer">
+            <button class="circleBtn" onclick="ff(6,'-')">-</button>
+            <button id="q6" class="circleBtn">2</button>
+            <button class="circleBtn" onclick="ff(6,'+')">+</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

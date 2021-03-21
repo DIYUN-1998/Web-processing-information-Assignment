@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simon Memory Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet" type='text/css'/>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <style>
+        #panel {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 40vmin;
+            width: 40vmin;
+            border-radius: 50%;
+            box-shadow: inset 0px 2px 0px 0px #454545;
+            border: 2px solid #3a3a3a;
+            background: linear-gradient(to bottom, #1e1e1e 5%, black 100%);
+        }
+
+        .black {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            height: 28vmin;
+            width: 28vmin;
+            border-radius: 50%;
+            box-shadow: inset 0px 2px 0px 0px #454545;
+            border: 2px solid #3a3a3a;
+            background: linear-gradient(to bottom, #1e1e1e 5%, black 100%);
+        }
+
+        #greenContainer {
+            top: 4%;
+            left: 0;
+        }
+
+        #green {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 25vmin;
+            width: 25vmin;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 0px 2px 0px 0px rgba(128, 186, 119, 0.96);
+            border: 2px solid rgba(44, 119, 44, 0.69);
+            background: linear-gradient(to bottom, #75d428 5%, green 100%);
+            pointer-events: none;
+        }
+
+        #green:active {
+            border: none;
+        }
+
+        #redContainer {
+            top: 4%;
+            left: 100%;
+        }
+
+        #red {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 25vmin;
+            width: 25vmin;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 0px 2px 0px 0px #f29c93;
+            border: 2px solid #d83526;
+            background: linear-gradient(to bottom, #fe1a00 5%, red 100%);
+            pointer-events: none;
+        }
+
+        #red:active {
+            border: none;
+        }
+
+        #yellowContainer {
+            top: 96%;
+            left: 0;
+        }
+
+        #yellow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 25vmin;
+            width: 25vmin;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 2px 2px 0px 0px #fedc76;
+            border: 2px solid rgba(250, 182, 41, 0.76);
+            background: linear-gradient(to bottom, #ffec64 5%, yellow 100%);
+            pointer-events: none;
+        }
+
+        #yellow:active {
+            border: none;
+        }
+
+        #blueContainer {
+            top: 96%;
+            left: 100%;
+        }
+
+        #blue {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 25vmin;
+            width: 25vmin;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 0px 2px 0px 0px #74b0f8;
+            border: 2px solid rgba(56, 131, 236, 0.76);
+            background: linear-gradient(to bottom, #365cf5 5%, blue 100%);
+            pointer-events: none;
+        }
+
+        #blue:active {
+            border: none;
+        }
+
+        #start {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 4vmin;
+            width: 11vmin;
+            border-radius: 10%;
+            cursor: pointer;
+            box-shadow: inset 0px 2px 2px 1px #e8e8e8;
+            border: 2px solid rgba(198, 198, 198, 0.76);
+            background-color: #c8c8c8;
+            font-family: "Orbitron";
+            line-height: 4vmin;
+            font-size: 2vmin;
+            text-align: center;
+        }
+
+        #start:active {
+            box-shadow: inset 0px 1px 1px 1px #a2a2a2;
+            border: none;
+        }
+
+        #maxScore {
+            position: absolute;
+            top: 50%;
+            left: 28%;
+            transform: translate(-50%, -50%);
+            height: 4vmin;
+            width: 4vmin;
+            border-radius: 10%;
+            box-shadow: inset 0px 1px 1px 1px #a2a2a2;
+            border: 1px solid rgba(198, 198, 198, 0.76);
+            background-color: #bebebe;
+            font-family: "Orbitron";
+            line-height: 4vmin;
+            font-size: 2vmin;
+            text-align: center;
+        }
+
+        #currentScore {
+            position: absolute;
+            top: 50%;
+            left: 72%;
+            transform: translate(-50%, -50%);
+            height: 4vmin;
+            width: 4vmin;
+            border-radius: 10%;
+            box-shadow: inset 0px 1px 1px 1px #a2a2a2;
+            border: 1px solid rgba(198, 198, 198, 0.76);
+            background-color: #bebebe;
+            font-family: "Orbitron";
+            line-height: 4vmin;
+            font-size: 2vmin;
+            text-align: center;
+        }
+
+        #indicator {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 1vmin;
+            width: 1vmin;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: red;
+        }
+
+        #tip {
+            position: absolute;
+            top: 130%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 100%;
+            font-family: "Orbitron";
+            white-space: nowrap;
+            font-size: 4vmin;
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        var queue = [getNext()];//use to store sequence
+        var count = 0;//use to help implement method playerPress()
+        var flashSpeed = 1000;//use to control the time consumed of each flash
+        var flashInterval = flashSpeed + 500;//use to control the interval of each flash
+        var timeLimit;//use to store the returned code of a setInterval() function to implement 5s time limit
+
+        //onclick event of start button, will hide tip, change the colour of indicator and disable start button then
+        function start() {
+            $("#tip").text("");
+            $("#indicator").css("background-color", "green");
+            $("#start").css("pointer-events", "none");
+            setTimeout(function () {
+                giveSignal();
+            }, 1500);//1500ms + 1500ms default flashInterval, there is 3s before the game begin
+        }
+
+        //this method will flash circle in correct order according to variable queue
+        //the interval of each flash depends on variable flashInterval
+        //the time span of each flash depends on variable flashSpeed
+        function giveSignal() {
+            // console.log(queue);//test use
+            // $("#tip").text(queue);//test use
+            var i = 0;
+            var show = setInterval(function () {
+                flash(queue[i++]);
+                if (i >= queue.length) {
+                    clearInterval(show);
+                    timeLimit = setTimeout("gameOver('Time Out! Game Over')", 5000 + flashSpeed);
+                    $(".black div").css("pointer-events", "auto");
+                }
+            }, flashInterval);
+        }
+
+        //this method will listen player press then check variable queue and excuse relative action
+        function playerPress(index) {
+            // console.log(index);//test use
+            clearTimeout(timeLimit);
+            if (index === queue[count]) {//press correct
+                if (count === queue.length - 1) {//press correct and finish queue
+                    $(".black div").css("pointer-events", "none");
+                    var currentScore = $("#currentScore");
+                    var value = parseInt(currentScore.text()) + 1;
+                    checkSpeedUp(value);
+                    if (value < 10) {
+                        value = "0" + value;
+                    }
+                    currentScore.text(value);
+                    queue.push(getNext());
+                    count = 0;
+                    giveSignal();
+                } else {//press correct but not finish queue yet
+                    count++;
+                    timeLimit = setTimeout("gameOver('Time Out! Game Over')", 5000);
+                }
+            } else {//press incorrect
+                gameOver("Wrong! Game Over");
+            }
+        }
+
+        //this method called when player failed and it implemented a failed animation
+        //it also reset a series variables by function failedAnimation() and gives a tip to show failed reasons
+        function gameOver(text) {
+            $(".black div").css("pointer-events", "none");
+            $("#indicator").css("background-color", "red");
+            $("#tip").text(text);
+            failedAnimation();
+        }
+
+        //this method called by gameOver() function to play failed animation and activate start button at the end
+        function failedAnimation() {
+            flashSpeed = 468;
+            flashInterval = flashSpeed + 64;
+            var i = 0;
+            var animation = setInterval(function () {
+                flash(1);
+                flash(2);
+                flash(3);
+                flash(4);
+                console.log(888);//
+                if (++i >= 5) {
+                    clearInterval(animation);
+                    queue = [getNext()];
+                    count = 0;
+                    flashSpeed = 1000;
+                    flashInterval = flashSpeed + 500;
+                    var currentScore = $("#currentScore");
+                    var maxScore = $("#maxScore");
+                    if (parseInt(currentScore.text()) > parseInt(maxScore.text())) {
+                        maxScore.text(currentScore.text());
+                    }
+                    currentScore.text("00");
+                    $("#start").css("pointer-events", "auto");
+                }
+            }, flashInterval);
+        }
+
+        //to check if game need to be speed up according to currentScore
+        //if so, change game speed by change global variable flashSpeed and flashInterval
+        function checkSpeedUp(value) {
+            if (value > 5 && value <= 9) {
+                flashSpeed = 1000;
+                flashInterval = flashSpeed + 200;
+            } else if (value > 9 && value <= 13) {
+                flashSpeed = 818;
+                flashInterval = flashSpeed + 32;
+            } else if (value > 13) {
+                flashSpeed = 468;
+                flashInterval = flashSpeed + 32;
+            }
+        }
+
+        //flash a circle according to index gave and global variable flashSpeed
+        function flash(index) {
+            if (index === 1) {
+                $("#green").css("opacity", 0).animate({opacity: 1}, flashSpeed);
+            } else if (index === 2) {
+                $("#red").css("opacity", 0).animate({opacity: 1}, flashSpeed);
+            } else if (index === 3) {
+                $("#yellow").css("opacity", 0).animate({opacity: 1}, flashSpeed);
+            } else {
+                $("#blue").css("opacity", 0).animate({opacity: 1}, flashSpeed);
+            }
+        }
+
+        //return a random number from 1 to 4
+        function getNext() {
+            return Math.floor(Math.random() * 4 + 1);
+        }
+    </script>
+</head>
+<body>
+<div id="panel">
+    <div id="greenContainer" class="black">
+        <div id="green" onclick="playerPress(1)"></div>
+    </div>
+    <div id="redContainer" class="black">
+        <div id="red" onclick="playerPress(2)"></div>
+    </div>
+    <div id="yellowContainer" class="black">
+        <div id="yellow" onclick="playerPress(3)"></div>
+    </div>
+    <div id="blueContainer" class="black">
+        <div id="blue" onclick="playerPress(4)"></div>
+    </div>
+    <div id="start" onclick="start()">START</div>
+    <div id="maxScore">00</div>
+    <div id="currentScore">00</div>
+    <div id="indicator"></div>
+    <div id="tip"></div>
+</div>
+</body>
+</html>
